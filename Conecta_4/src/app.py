@@ -4,18 +4,19 @@ import random
 class app():
     def __init__(self):
         self.color = ""
+        self.volver_jugar = False
         self.gano = False
         self.opcion = 0
         self.fila = 0
         self.columna = 0
         self.turno = "rojo"
         self.tablero = [
-    [" ", " ", " ", " ", " ", " ", " "],
-    [" ", " ", " ", " ", " ", " ", " "],
-    [" ", " ", " ", " ", " ", " ", " "],
-    [" ", " ", " ", " ", " ", " ", " "],
-    [" ", " ", " ", " ", " ", " ", " "],
-    [" ", " ", " ", " ", " ", " ", " "]
+    ["⚪", "⚪", "⚪", "⚪", "⚪", "⚪", "⚪"],
+    ["⚪", "⚪", "⚪", "⚪", "⚪", "⚪", "⚪"],
+    ["⚪", "⚪", "⚪", "⚪", "⚪", "⚪", "⚪"],
+    ["⚪", "⚪", "⚪", "⚪", "⚪", "⚪", "⚪"],
+    ["⚪", "⚪", "⚪", "⚪", "⚪", "⚪", "⚪"],
+    ["⚪", "⚪", "⚪", "⚪", "⚪", "⚪", "⚪"]
 ]
         self.ficha = 0
 
@@ -63,7 +64,7 @@ class app():
                     return
                 columna = int(columna)
                 for fila in range(5, -1, -1):
-                    if self.tablero[fila][columna] == " ":
+                    if self.tablero[fila][columna] == "⚪":
                         if self.turno == "rojo":
                             self.tablero[fila][columna] = "🔴"
                             self.turno = "amarillo"
@@ -119,7 +120,7 @@ class app():
 
         return contador
     def tablero_lleno(self):
-        if all(" " not in fila for fila in self.tablero):
+        if all("⚪" not in fila for fila in self.tablero):
             print("⚠️ ¡Empate! El tablero está lleno y no hay ganador. Buen juego a ambos. 😄")
             self.gano = True
     def opciones_de_juego(self):
@@ -146,7 +147,7 @@ class app():
                     return
                 columna = int(columna)
             for fila in range(5, -1, -1):
-                if self.tablero[fila][columna] == " ":
+                if self.tablero[fila][columna] == "⚪":
                     if self.turno == "rojo":
                            self.tablero[fila][columna] = "🔴"
                            self.turno = "amarillo"
@@ -166,5 +167,27 @@ class app():
 
         except Exception as e:
             print(f"No valido: {e}")
+    def reiniciar_tablero_al_terminar(self):
+        if self.gano:
+            self.tablero = [
+    ["⚪", "⚪", "⚪", "⚪", "⚪", "⚪", "⚪"],
+    ["⚪", "⚪", "⚪", "⚪", "⚪", "⚪", "⚪"],
+    ["⚪", "⚪", "⚪", "⚪", "⚪", "⚪", "⚪"],
+    ["⚪", "⚪", "⚪", "⚪", "⚪", "⚪", "⚪"],
+    ["⚪", "⚪", "⚪", "⚪", "⚪", "⚪", "⚪"],
+    ["⚪", "⚪", "⚪", "⚪", "⚪", "⚪", "⚪"]
+]
+            self.gano = False
+    def reinicio_juego(self):
+        while not self.volver_jugar:
+            volver_jugar = input("¿Quieres volver a jugar? (s/n)")
+            if volver_jugar == "n":
+                print("🙌 ¡Gracias por jugar a Conecta 4! Esperamos que te hayas divertido."
+                      "Vuelve pronto para otra partida. ¡Hasta luego! 👋")
+                self.volver_jugar = True
+            else:
+                self.reiniciar_tablero_al_terminar()
+                self.empezar_juego()
+
 
 
