@@ -1,6 +1,32 @@
+import random
 class Game:
     def __init__(self):
         self.turno = "rojo"
+        self.tablero = Board()
+        self.jugador = Player()
+        self.mensajes = menssajes()
+        self.instrucciones = instruction()
+    def empezar_juego(self, opcion, tipo):
+        if opcion == 1:
+            while not self.gano:
+              self.tablero.mostrar_tablero()
+              self.jugador = Player(tipo, self.turno)
+              columna = self.jugador.elegir_columna()
+              if columna == "salir":
+                  break
+              self.tablero.colocar_ficha(columna)
+              self.cambiar_turno()
+              self.tablero.ganador()
+              self.tablero.tablero_lleno()
+
+    def cambiar_turno(self):
+        if self.turno == "rojo":
+            self.turno = "amarillo"
+        else:
+            self.turno = "rojo"
+    def gano(self, boleano):
+            gano = boleano
+            return gano
 class Board:
     def __init__(self):
         self.tablero = [
@@ -14,20 +40,20 @@ class Board:
         self.ficha = 0
         self.fila = 0
         self.columna = 0
+        self.turno = "rojo"
     def mostrar_tablero(self):
         print(" 0 1 2 3 4 5 6")
         print("-----------------")
         for fila in self.tablero:
             print("|" + "|".join(fila) + "|")
         print("-----------------")
-    def colocar_ficha(self, columna, turno):
+    def colocar_ficha(self, columna):
      try:
-        print(f"Turno de {turno}")
         for fila in range(5, -1, -1):
             if self.tablero[fila][columna] == "⚪":
-                if turno == "rojo":
+                if self.turno == "rojo":
                     self.tablero[fila][columna] = "🔴"
-                    turno = "amarillo"
+                    self.turno = "amarillo"
                     self.mostrar_tablero()
                     self.ficha = self.tablero[fila][columna]
                     self.fila = fila
@@ -35,7 +61,7 @@ class Board:
                     break
                 else:
                     self.tablero[fila][columna] = "🟡"
-                    turno = "rojo"
+                    self.turno = "rojo"
                     self.mostrar_tablero()
                     self.ficha = self.tablero[fila][columna]
                     self.fila = fila
@@ -59,10 +85,10 @@ class Board:
 
             if total >= 4:
                 if self.ficha == "🔴":
-                    self.gano = True
+                    Game.gano(self, True)
                     break
                 if self.ficha == "🟡":
-                    self.gano = True
+                    Game.gano(self, True)
                     break
     def contar_fichas_ganador(self,fila, columna, direccion_fila, direccion_columna):
         contador = 0
@@ -79,16 +105,21 @@ class Board:
     def tablero_lleno(self):
         if all("⚪" not in fila for fila in self.tablero):
             print("⚠️ ¡Empate! El tablero está lleno y no hay ganador. Buen juego a ambos. 😄")
-            self.gano = True
+            Game.gano(self, True)
+
 class Player:
-    def __init__(self):
+    def __init__(self, tipo, turno):
+        self.tipo = tipo
+        self.turno = turno
     def elegir_columna(self):
-        columna = input("elige una columna del 0-7 en la que desees jugar: ")
-        return columna
-class humanPlayer:
-    pass
-class IA:
-    pass
+        if self.tipo == "human":
+            print(f"Turno de {self.turno}")
+            columna = input("elige una columna del 0-7 en la que desees jugar: ")
+            if columna == "salir":
+                return "salir"
+            return int(columna)
+        elif self.tipo == "maquina" and self.turno == "rojo":
+            return random.randint(0, 6)
 class menssajes:
     pass
 class instruction:
