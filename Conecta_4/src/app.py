@@ -4,7 +4,6 @@ import random
 class app():
     def __init__(self):
         self.color = ""
-        self.volver_jugar = False
         self.gano = False
         self.opcion = 0
         self.fila = 0
@@ -167,17 +166,18 @@ class app():
 
         except Exception as e:
             print(f"No valido: {e}")
+
     def reiniciar_tablero_al_terminar(self):
-        if self.gano:
-            self.tablero = [
-    ["⚪", "⚪", "⚪", "⚪", "⚪", "⚪", "⚪"],
-    ["⚪", "⚪", "⚪", "⚪", "⚪", "⚪", "⚪"],
-    ["⚪", "⚪", "⚪", "⚪", "⚪", "⚪", "⚪"],
-    ["⚪", "⚪", "⚪", "⚪", "⚪", "⚪", "⚪"],
-    ["⚪", "⚪", "⚪", "⚪", "⚪", "⚪", "⚪"],
-    ["⚪", "⚪", "⚪", "⚪", "⚪", "⚪", "⚪"]
-]
-            self.gano = False
+            if self.gano:
+                self.tablero = [
+                    ["⚪", "⚪", "⚪", "⚪", "⚪", "⚪", "⚪"],
+                    ["⚪", "⚪", "⚪", "⚪", "⚪", "⚪", "⚪"],
+                    ["⚪", "⚪", "⚪", "⚪", "⚪", "⚪", "⚪"],
+                    ["⚪", "⚪", "⚪", "⚪", "⚪", "⚪", "⚪"],
+                    ["⚪", "⚪", "⚪", "⚪", "⚪", "⚪", "⚪"],
+                    ["⚪", "⚪", "⚪", "⚪", "⚪", "⚪", "⚪"]
+                ]
+                self.gano = False
     def reinicio_juego(self):
         while not self.volver_jugar:
             volver_jugar = input("¿Quieres volver a jugar? (s/n)")

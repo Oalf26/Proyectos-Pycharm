@@ -1,25 +1,62 @@
-
 [
-  {
-    "brand": "Toyota",
-    "models": [
-      {"name": "Corolla", "year": 2020},
-      {"name": "Hilux", "year": 2021},
-      {"name": "Rav4", "year": 2020}
-    ]
-  },
-  {
-    "brand": "Honda",
-    "models": [
-      {"name": "Civic", "year": 2020},
-      {"name": "Accord", "year": 2021}
-    ]
-  },
-  {
-    "brand": "Ford",
-    "models": [
-      {"name": "Fiesta", "year": 2019},
-      {"name": "Mustang", "year": 2020}
-    ]
-  }
+    {
+        "brand": "Toyota",
+        "models": [
+            {
+                "name": "Corolla",
+                "year": 2020
+            },
+            {
+                "name": "Hilux",
+                "year": 2021
+            },
+            {
+                "name": "Rav4",
+                "year": 2020
+            }
+        ]
+    },
+    {
+        "brand": "Honda",
+        "models": [
+            {
+                "name": "Civic",
+                "year": 2020
+            },
+            {
+                "name": "Accord",
+                "year": 2021
+            }
+        ]
+    },
+    {
+        "brand": "Ford",
+        "models": [
+            {
+                "name": "Fiesta",
+                "year": 2019
+            },
+            {
+                "name": "Mustang",
+                "year": 2020
+            }
+        ]
+    },
+    {
+        "brand": "Nissan",
+        "models": [
+            {
+                "name": "Sentra",
+                "year": 2020
+            },
+            {
+                "name": "Altima",
+                "year": 2021
+            },
+            {
+                "name": "Leaf",
+                "year": 2019
+            }
+        ]
+    }
 ]
